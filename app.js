@@ -14,6 +14,7 @@ const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 
+const compression = require(`compression`);
 const globalErrorHandler = require(`./controllers/errorController`);
 const AppError = require(`./utils/appError`);
 
@@ -62,6 +63,7 @@ app.use(
     ]
   })
 );
+app.use(compression());
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // console.log(req.cookies);
