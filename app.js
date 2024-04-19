@@ -1,5 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const cors = require('cors');
 
 const path = require(`path`);
 const rateLimit = require(`express-rate-limit`);
@@ -23,6 +25,9 @@ app.enable('trust proxy');
 app.set(`view engine`, `pug`);
 app.set(`views`, path.join(__dirname, `views`));
 // 1) GLOBAL MIDDLEWARE
+// Implement CORS
+app.use(cors());
+app.options('*', cors());
 // Serving static files
 app.use(express.static(path.join(__dirname, `public`)));
 // Set HTTP Headers
